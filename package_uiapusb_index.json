@@ -12,6 +12,41 @@
         {
           "name": "UIAPduino-USB",
           "architecture": "ch32v",
+          "version": "0.0.3",
+          "category": "Contributed",
+          "url": "https://github.com/tarosay/arduino-core-ch32-uiapusb/archive/refs/tags/0.0.3.zip",
+          "archiveFileName": "0.0.3.zip",
+          "checksum": "SHA-256:19AB9F48427A25586B459B0708C3E46ED475F654227F8009857668354DDB6650",
+          "size": "1473260",
+          "boards": [
+            { "name": "Pro Micro CH32V003 (UIAPUSB)" }
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "uiapusb",
+              "name": "xpack-riscv-none-elf-gcc",
+              "version": "14.2.0-2"
+            },
+            {
+              "packager": "uiapusb",
+              "name": "openocd",
+              "version": "1.0.0"
+            },
+            {
+              "packager": "uiapusb",
+              "name": "beforeinstall",
+              "version": "1.0.0"
+            },
+            {
+              "packager": "uiapusb",
+              "name": "minichlink-2982dfd",
+              "version": "1.0.0"
+            }
+          ]
+        },
+        {
+          "name": "UIAPduino-USB",
+          "architecture": "ch32v",
           "version": "0.0.2",
           "category": "Contributed",
           "url": "https://github.com/tarosay/arduino-core-ch32-uiapusb/archive/refs/tags/0.0.2.zip",
@@ -129,14 +164,14 @@
             },
             {
               "host": "x86_64-linux-gnu",
-              "url": "REPLACE_WITH_LINUX_XPACK_URL",
+              "url": "https://github.com/tarosay/arduino-core-ch32-uiapusb/releases/download/0.0.0/xpack-riscv-none-elf-gcc-14.2.0-2-linux-x64.tar.gz",
               "archiveFileName": "xpack-riscv-none-elf-gcc-14.2.0-2-linux-x64.tar.gz",
               "checksum": "SHA-256:0AB93937AAB882C3A69F63EFF4FE8FC6E360E4A23776004FA116AD692E699D23",
               "size": "331200932"
             },
             {
               "host": "x86_64-apple-darwin",
-              "url": "REPLACE_WITH_MACOS_XPACK_URL",
+              "url": "https://github.com/tarosay/arduino-core-ch32-uiapusb/releases/download/0.0.0/xpack-riscv-none-elf-gcc-14.2.0-2-darwin-x64.tar.gz",
               "archiveFileName": "xpack-riscv-none-elf-gcc-14.2.0-2-darwin-x64.tar.gz",
               "checksum": "SHA-256:F6930ECADDA7A5B37C8557534E2D7A44DA5601129FAFA17E4E36020F778C9E1A",
               "size": "321644133"
