@@ -66,7 +66,14 @@ https://github.com/tarosay/board_manager_files/raw/main/package_uiap_hid_index.j
 
 ## バージョン履歴
 
-### 1.1.5（最新）
+### 1.2.0（最新）
+
+- **Wire (I2C) ライブラリを初めて動作させた**（マスター・スレーブともに v1.1.5 以前は完全に動作不可）
+- **根本原因修正**: I2C ISR の `WCH-Interrupt-fast` 属性を標準割り込みに変更  
+  rv003usb（ソフトウェア USB）のビットサンプリング処理を横取りして USB HID を切断していた問題を解決
+- Wire examples を追加: `i2c_scanner` / `i2c_slave_test` / `i2c_master_test` / `i2c_slave_diag` / `i2c_probe_test`
+
+### 1.1.5
 
 - **SDmin ライブラリを追加**
   - CH32V003 (16KB Flash) 向けに最適化した FAT32 ミニマル SD ドライバ
