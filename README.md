@@ -66,12 +66,29 @@ https://github.com/tarosay/board_manager_files/raw/main/package_uiap_hid_index.j
 
 ## バージョン履歴
 
-### 1.2.0（最新）
+### 1.2.1（最新）
 
-- **Wire (I2C) ライブラリを初めて動作させた**（マスター・スレーブともに v1.1.5 以前は完全に動作不可）
+- **Wire (I2C) ライブラリを完全動作させた**（マスター・スレーブともに v1.1.5 以前は完全に動作不可）
 - **根本原因修正**: I2C ISR の `WCH-Interrupt-fast` 属性を標準割り込みに変更  
-  rv003usb（ソフトウェア USB）のビットサンプリング処理を横取りして USB HID を切断していた問題を解決
-- Wire examples を追加: `i2c_scanner` / `i2c_slave_test` / `i2c_master_test` / `i2c_slave_diag` / `i2c_probe_test`
+  `WCH-Interrupt-fast` は MIE=0 でも割り込みを発火させる WCH PFIC HPE 機構を使用しており、  
+  rv003usb（ソフトウェア USB）のビットサンプリング処理を横取りして USB HID を切断していた
+- **追加修正** — v1.2.0 で残っていた以下の不具合をすべて解消:
+  - `variant_CH32V003F4.h` に `PIN_WIRE_SDA=PC1` / `PIN_WIRE_SCL=PC2` を追加  
+    （未定義のまま `Wire.begin()` を呼ぶと誤ったピンを使いハングしていた）
+  - `variant_CH32V003F4.h` で `I2C_MODULE_ENABLED` を有効化  
+    （コメントアウトされていたため `PinMap_I2C_SDA/SCL` 未定義でリンクエラーが発生していた）
+  - `boards.txt` に `-DCPLUSPLUS` フラグを追加  
+    （`TwoWire` グローバルコンストラクタが動作せず `Wire.begin()` が確実に初期化されなかった）
+  - `cores/arduino/uiapusb.c` に `GetTick()` オーバーライドを追加  
+    （SysTick 割り込みなしで `millis()` と I2C タイムアウトを正常動作させる）
+  - `Wire.h` / `Wire.cpp` に `begin(int, int)` オーバーロードを追加  
+    （`Wire.begin(PC1, PC2)` が `begin(int addr, bool)` に誤解決されスレーブモードになっていた）
+- **Wire examples 追加**: `i2c_scanner` / `i2c_slave_test` / `i2c_master_test` / `i2c_BMP280_test`  
+  BMP280（温度・気圧センサ）読み取りサンプルを新規追加
+
+> **v1.2.0 について**: v1.2.0 は Wire が初めて動作したバージョンですが、上記の追加修正が含まれておらず、
+> 多くの環境で Wire が正常に動作しません。v1.2.1 へのアップグレードを強く推奨します。
+> そのため、ボードマネージャーの選択肢から v1.2.0 は除外しています。
 
 ### 1.1.5
 

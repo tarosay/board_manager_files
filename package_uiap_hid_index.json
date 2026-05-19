@@ -12,12 +12,12 @@
         {
           "name": "UIAPduino HID",
           "architecture": "ch32v",
-          "version": "1.2.0",
+          "version": "1.2.1",
           "category": "Contributed",
-          "url": "https://github.com/tarosay/arduino_core_ch32/archive/refs/tags/1.2.0.zip",
-          "archiveFileName": "arduino_core_ch32-1.2.0.zip",
-          "checksum": "SHA-256:4FB8AF59D91B3C5869A5BD4319F6DE7786DA6C75114061FF7E3BE94AFAFBBFC4",
-          "size": "1510074",
+          "url": "https://github.com/tarosay/arduino_core_ch32/archive/refs/tags/1.2.1.zip",
+          "archiveFileName": "arduino_core_ch32-1.2.1.zip",
+          "checksum": "SHA-256:C4A016A5CF494E71C5F98F089CAF18C34DE5F84034691DD9C16002975320F3E3",
+          "size": "1517925",
           "boards": [
             {
               "name": "HID ProMicro CH32V003"
