@@ -66,7 +66,12 @@ https://github.com/tarosay/board_manager_files/raw/main/package_uiap_hid_index.j
 
 ## バージョン履歴
 
-### 1.2.1（最新）
+### 1.2.2（最新）
+
+- **SDmin: `sm_rmdir(path)` 追加** — 空ディレクトリを削除する関数を追加  
+  `sm_del()` と共通実装 `_sm_del_entry()` に統合し、Flash 増加を約 20 バイトに最小化
+
+### 1.2.1
 
 - **Wire (I2C) ライブラリを完全動作させた**（マスター・スレーブともに v1.1.5 以前は完全に動作不可）
 - **根本原因修正**: I2C ISR の `WCH-Interrupt-fast` 属性を標準割り込みに変更  
