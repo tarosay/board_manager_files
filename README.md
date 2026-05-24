@@ -66,7 +66,13 @@ https://github.com/tarosay/board_manager_files/raw/main/package_uiap_hid_index.j
 
 ## バージョン履歴
 
-### 1.2.2（最新）
+### 1.2.3（最新）
+
+- **SDmin: `sm_open_a(path)` 追加** — 既存ファイルへの追記オープン（ファイルが存在しない場合は新規作成）
+- **SDmin: `sm_sync_w()` 追加** — ファイルを開いたまま現在のセクタをフラッシュしディレクトリのファイルサイズを更新（電源断対策）
+- **SDmin: SDLog サンプルスケッチ追加** — UART 受信データを microSD に記録する OpenLog 互換ロガー
+
+### 1.2.2
 
 - **SDmin: `sm_rmdir(path)` 追加** — 空ディレクトリを削除する関数を追加  
   `sm_del()` と共通実装 `_sm_del_entry()` に統合し、Flash 増加を約 20 バイトに最小化
