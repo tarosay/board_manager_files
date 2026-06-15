@@ -53,6 +53,16 @@ https://github.com/tarosay/board_manager_files/raw/main/package_uiap_hid_index.j
 | None — use UIAPSerial（デフォルト） | 軽量 UART ラッパー。Flash 消費を最小に抑える |
 | HardwareSerial (Serial / USART1) | Arduino 標準の `Serial` を使用（+約 4.7 KB） |
 
+#### PWM メニュー（v1.2.6 以降）
+
+| 設定 | TIM2 使用ピン |
+|------|--------------|
+| TIM2 Default（デフォルト） | pin 2 (PC0 / TIM2-CH3) |
+| TIM2 Remap3 | pin 3 (PC1) / 9 (PC7) / 15 (PD5) / 16 (PD6) |
+
+TIM1 ピン（pin 0 / 5 / 6 / 12）はどちらの設定でも使用できます。  
+PWMmin ライブラリと組み合わせて使います。
+
 #### Optimize メニュー
 
 | 設定 | フラグ |
@@ -66,7 +76,24 @@ https://github.com/tarosay/board_manager_files/raw/main/package_uiap_hid_index.j
 
 ## バージョン履歴
 
-### 1.2.4（最新）
+### 1.2.6（最新）
+
+- **PWMmin ライブラリ追加** — CH32V003 専用の軽量 PWM ライブラリ（ヘッダーオンリー、未使用関数は LTO で自動削除）
+  - `Pwm_write` / `Pwm_freq` / `Pwm_freq_TIM1` / `Pwm_freq_TIM2` / `Pwm_stop`
+  - `Pwm_tone` / `Pwm_tone_update` — ノンブロッキング tone 相当
+  - `Pwm_servo_begin` / `Pwm_servo` — サーボ制御（0〜180°）
+  - 誤設定コンパイルエラーマクロ: `PWMMIN_REQUIRE_DEFAULT()` / `PWMMIN_REQUIRE_REMAP3()`
+  - サンプルスケッチ 5 つ（Basic / Remap3 / Tone / Servo / ServoRemap3）
+- **Tools > PWM メニュー追加** — TIM2 Default（pin 2）/ TIM2 Remap3（pin 9/15/16）を切り替え
+- **USB VID/PID 注記追加** — `usb_config.h` と README に「開発・評価用」と明記。製造・配布・販売時は正規 VID/PID を設定するよう案内
+
+### 1.2.5
+
+- **SDmin: `sm_seek(pos)` 追加** — 読み取り位置を任意位置へ移動（ランダムアクセス読み）
+- **SDmin: `sm_write_at(path, pos, buf, len)` 追加** — 既存ファイルの途中を部分上書き（1 セクタ内限定・サイズ拡張なし）
+- **SDmin: SeekWriteAt サンプルスケッチ追加**
+
+### 1.2.4
 
 - **Wiremin ライブラリ追加** — Wire.h の代替となる最小 I2C ドライバ。Flash を **▲6,176 バイト**削減。BMI270（6軸 IMU）が 16KB Flash 内で動作確認済み（15,728 バイト）
 - **HcSr04 ライブラリ追加** — HC-SR04 超音波距離センサ対応。`pulseIn` で ECHO パルス幅を計測し距離（cm）を算出。計測範囲 約 2〜400 cm
