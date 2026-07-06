@@ -76,7 +76,16 @@ PWMmin ライブラリと組み合わせて使います。
 
 ## バージョン履歴
 
-### 1.2.6（最新）
+### 1.2.7（最新）
+
+- **フォーク元（YuukiUmeta-UIAP/arduino_core_ch32）の main をマージ** — openwch 本家の以下の修正を取り込み
+  - **Print: `print(0)` が `"0"` を出力するように修正**（本家 #189）
+  - **platform.txt: Arduino IDE 1.8.x 互換の修正** — minichlink の Windows パス区切り修正、`upload.params.verbose` / `upload.params.quiet` 追加
+  - **PeripheralPins.c（CH32V003F4）: ADC1_IN6 / ADC1_IN7 のピン割り当てを PA6 / PA4 → PD6 / PD4 に修正**（本家 #160）
+  - **tools/platformio-build.py 更新**（本家 #147）
+- マージ後、メンテ対象の全スケッチ例 40 本のビルド確認済み（退行なし）
+
+### 1.2.6
 
 - **PWMmin ライブラリ追加** — CH32V003 専用の軽量 PWM ライブラリ（ヘッダーオンリー、未使用関数は LTO で自動削除）
   - `Pwm_write` / `Pwm_freq` / `Pwm_freq_TIM1` / `Pwm_freq_TIM2` / `Pwm_stop`
