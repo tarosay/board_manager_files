@@ -76,7 +76,15 @@ PWMmin ライブラリと組み合わせて使います。
 
 ## バージョン履歴
 
-### 1.2.7（最新）
+### 1.2.8（最新）
+
+- **Zicsr 拡張の明示指定に対応** — `noInterrupts()` / `interrupts()` を使うライブラリでビルドが通らない問題を修正
+  - 現行の RISC-V 仕様では `csrr` / `csrw` などの CSR 命令が `Zicsr` 拡張に分離されており、GCC 11 以降は `-march=rv32ec` のままだとアセンブラが認識できず `extension 'zicsr' required` エラーになっていた
+  - 各 CSR 命令の直前に `.option arch, +zicsr` を挿入するマクロを追加。**`-march` は変更していない**ため、既存の割り込み設定・ABI・コード生成には影響なし
+  - Adafruit NeoPixel の `show()` が `noInterrupts()` を呼ぶため表面化していた。CH32V003 + Adafruit NeoPixel 1.15.5 で動作確認済み
+- 全スケッチ例 41 本のビルド確認済み（40/41 OK、SPIFlash のみ本家由来の既知エラーで従来からビルド不可）
+
+### 1.2.7
 
 - **フォーク元（YuukiUmeta-UIAP/arduino_core_ch32）の main をマージ** — openwch 本家の以下の修正を取り込み
   - **Print: `print(0)` が `"0"` を出力するように修正**（本家 #189）
