@@ -76,7 +76,15 @@ PWMmin ライブラリと組み合わせて使います。
 
 ## バージョン履歴
 
-### 1.2.8（最新）
+### 1.2.9（最新）
+
+- **HardwareSerial に USART 受信割り込みとリングバッファを追加** — `Serial.available()` / `read()` / `peek()` が使えるようになった（既定 64 バイト、`SERIAL_RX_BUFFER_SIZE` で変更可）
+- **`realloc()` が内容を保持しない問題を修正** — `String` の連結（`s += ...`）でバッファが伸びるたびに先頭がゴミになっていた。あわせて `free()` が領域を回収するようになり、`loop()` 内で `String` を使ってもヒープが枯渇しない
+- **`dtostrf()` の修正** — `strdup` 未定義によるリンクエラー、小数の先頭ゼロ落ち（`1.05` → `"1.5"`）、負値の符号消失を解消。**挙動変更**: `prec == 0` で小数点を付けなくなった（avr-libc 準拠）
+- **`pwm_start()` / `pwm_stop()` の NULL 参照を修正**
+- **CH32V003 で `analogWrite()` を非推奨に** — 理由と代替を README に明記し、スケッチ例 `PwmAndToneTest` を PWMmin (`Pwm_write`) に書き換え
+
+### 1.2.8
 
 - **Zicsr 拡張の明示指定に対応** — `noInterrupts()` / `interrupts()` を使うライブラリでビルドが通らない問題を修正
   - 現行の RISC-V 仕様では `csrr` / `csrw` などの CSR 命令が `Zicsr` 拡張に分離されており、GCC 11 以降は `-march=rv32ec` のままだとアセンブラが認識できず `extension 'zicsr' required` エラーになっていた
