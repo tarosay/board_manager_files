@@ -76,7 +76,14 @@ PWMmin ライブラリと組み合わせて使います。
 
 ## バージョン履歴
 
-### 1.2.10（最新）
+### 1.2.11（最新）
+
+- **NeoPixelmin ライブラリを追加** — WS2812B（NeoPixel）を SPI1 で駆動する最小限のドライバ。波形を GPIO のサイクル数え打ちではなく SPI で生成するため、`show()` 中に割り込みを止める必要がない（Adafruit_NeoPixel の CH32 実装は 12 個で 7.7ms 割り込みを停止するため、ソフトウェア USB と両立しない）
+- **LED 12 個で Flash 8,500 → 5,932 バイト（▲2,568）**、実 RAM 276 → 220 バイト。`begin` / `show` / `clear` / `setPixelColor` / `fill` / `setBrightness` / `Color` は Adafruit_NeoPixel と同じ意味で動く
+- **DIN は pin 8（PC6 / SPI1 MOSI）固定** — `SPI.h` / `SDmin` とは併用不可。`NEOPIXELMIN_MAX_LEDS` は定義必須（未定義はコンパイルエラー）
+- **スケッチ例 `NeoPixelmin_ring` を追加**
+
+### 1.2.10
 
 - **Wiremin に 16bit アドレス版の API を追加** — `Wiremin_write_reg16()` / `Wiremin_read_reg16()`。メモリアドレスが 16bit の I2C EEPROM（24FC256 など）を、スケッチ側でアドレス 2 バイトを組み立てずに読み書きできる
 - **Wiremin のマスタ転送を 1 本の実装に統合** — スケッチ例 9 本の合計で ▲40 バイト。最も Flash が厳しい `Wiremin_bmi270` は 15,696 → 15,616 バイト（95%）。**挙動変更**: `Wiremin_read(addr, buf, 0)` の戻り値が `true` → `false`
