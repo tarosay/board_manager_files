@@ -76,7 +76,14 @@ PWMmin ライブラリと組み合わせて使います。
 
 ## バージョン履歴
 
-### 1.2.11（最新）
+### 1.2.12（最新）
+
+- **NeoPixelmin のリセット待ちを `SysTick` で測るようにした** — Flash を **▲2,224 バイト**削減。フレーム間のリセット待ちに `micros()` を使っていたが、`micros()` は `millis()` と同じ `uint64_t` の除算を引き込むため、待ち 1 か所のためにドライバ本体（836 バイト）の 2.6 倍の Flash を消費していた
+- **LED 12 個で Flash 5,932 → 3,532 バイト（36% → 21%）**、RAM 220 → 212 バイト。Adafruit_NeoPixel 1.15.5 との差は **▲4,968 バイト**に広がった
+- **使い方は変わらない** — `NEOPIXELMIN_RESET_US` はこれまでどおり µs で指定する（内部でカウント数に換算）。API・波形・配線もそのまま。実機の WS2812B 12 連リングで動作確認済み
+- **スケッチ例 `NeoPixelmin_ring` から `sketch.yaml` を削除** — Tools メニューの設定は `.ino` の先頭コメントに移動。`sketch.yaml` があるとインストール済みのコアではなくインデックスから取り直したコアでビルドされるため
+
+### 1.2.11
 
 - **NeoPixelmin ライブラリを追加** — WS2812B（NeoPixel）を SPI1 で駆動する最小限のドライバ。波形を GPIO のサイクル数え打ちではなく SPI で生成するため、`show()` 中に割り込みを止める必要がない（Adafruit_NeoPixel の CH32 実装は 12 個で 7.7ms 割り込みを停止するため、ソフトウェア USB と両立しない）
 - **LED 12 個で Flash 8,500 → 5,932 バイト（▲2,568）**、実 RAM 276 → 220 バイト。`begin` / `show` / `clear` / `setPixelColor` / `fill` / `setBrightness` / `Color` は Adafruit_NeoPixel と同じ意味で動く
