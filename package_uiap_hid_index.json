@@ -12,6 +12,48 @@
         {
           "name": "UIAPduino HID",
           "architecture": "ch32v",
+          "version": "1.2.14",
+          "category": "Contributed",
+          "url": "https://github.com/tarosay/arduino_core_ch32/archive/refs/tags/1.2.14.zip",
+          "archiveFileName": "arduino_core_ch32-1.2.14.zip",
+          "checksum": "SHA-256:F84ECB4D17BD548B4D25781020270BCF79920092359961FF7D4849C7B3866FAE",
+          "size": "1630157",
+          "boards": [
+            {
+              "name": "HID ProMicro CH32V003"
+            }
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "UIAP_HID",
+              "name": "xpack-riscv-none-elf-gcc",
+              "version": "14.2.0-2"
+            },
+            {
+              "packager": "UIAP_HID",
+              "name": "openocd",
+              "version": "1.0.0"
+            },
+            {
+              "packager": "UIAP_HID",
+              "name": "beforeinstall",
+              "version": "1.0.0"
+            },
+            {
+              "packager": "UIAP_HID",
+              "name": "minichlink-2982dfd",
+              "version": "1.0.0"
+            },
+            {
+              "packager": "UIAP_HID",
+              "name": "uiapflash",
+              "version": "1.0.0"
+            }
+          ]
+        },
+        {
+          "name": "UIAPduino HID",
+          "architecture": "ch32v",
           "version": "1.2.13",
           "category": "Contributed",
           "url": "https://github.com/tarosay/arduino_core_ch32/archive/refs/tags/1.2.13.zip",
@@ -911,6 +953,40 @@
         }
       ],
       "tools": [
+        {
+          "name": "uiapflash",
+          "version": "1.0.0",
+          "systems": [
+            {
+              "host": "i686-mingw32",
+              "url": "https://github.com/tarosay/uiapflash/releases/download/v1.0.0/uiapflash-1.0.0-windows.tar.gz",
+              "archiveFileName": "uiapflash-1.0.0-windows.tar.gz",
+              "checksum": "SHA-256:29D334C99E3D1A5E6BD9E9C5C906618DD2DB76D6DC98D1EF87EAD432EE1BFE7C",
+              "size": "105497"
+            },
+            {
+              "host": "x86_64-linux-gnu",
+              "url": "https://github.com/tarosay/uiapflash/releases/download/v1.0.0/uiapflash-1.0.0-linux.tar.gz",
+              "archiveFileName": "uiapflash-1.0.0-linux.tar.gz",
+              "checksum": "SHA-256:1107320FA6427C9BC1764499B32A8A2E2DA9EC8F906DFCD615C786E930771521",
+              "size": "16622"
+            },
+            {
+              "host": "x86_64-apple-darwin",
+              "url": "https://github.com/tarosay/uiapflash/releases/download/v1.0.0/uiapflash-1.0.0-macos.tar.gz",
+              "archiveFileName": "uiapflash-1.0.0-macos.tar.gz",
+              "checksum": "SHA-256:185E9C3EA69EBA278C4C4B88B4CC5304BE986A4EDAF0548041FDB39DDF740D01",
+              "size": "31894"
+            },
+            {
+              "host": "arm64-apple-darwin",
+              "url": "https://github.com/tarosay/uiapflash/releases/download/v1.0.0/uiapflash-1.0.0-macos.tar.gz",
+              "archiveFileName": "uiapflash-1.0.0-macos.tar.gz",
+              "checksum": "SHA-256:185E9C3EA69EBA278C4C4B88B4CC5304BE986A4EDAF0548041FDB39DDF740D01",
+              "size": "31894"
+            }
+          ]
+        },
         {
           "name": "xpack-riscv-none-elf-gcc",
           "version": "14.2.0-2",

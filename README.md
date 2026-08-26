@@ -76,7 +76,15 @@ PWMmin ライブラリと組み合わせて使います。
 
 ## バージョン履歴
 
-### 1.2.13（最新）
+### 1.2.14（最新）
+
+- **書き込み方法に「UIAPduino (USB)」を追加** — `Tools > Upload method` で選ぶ。基板のブートローダ（rv003usb）に USB の HID だけで書き込む専用ツール `uiapflash` を同梱した。**既定はこれまでどおり minichlink** で、UIAPduino (USB) は 2 番目
+- **macOS から書き込めるようになった** — 同梱の minichlink は Windows / Linux / macOS の 3 ホストすべてが同じアーカイブを指しており、その中身に Mach-O が無い。そのため macOS では `exec format error` で起動すらせず、**ビルドは通るのに書き込めない**状態だった
+- **`uiapflash` は外部ライブラリに依存しない** — HID の Feature Report だけで書き込むので libusb は不要。macOS 版は Apple Silicon と Intel の両方を含む universal バイナリ
+- **動作確認** — macOS と Windows は実機への書き込みまで確認済み。**Linux はビルドのみで実機は未検証**
+- **スケッチ例 `Wiremin_EEPROM_CAT24M01` を追加** — 1Mbit の I2C EEPROM（16bit アドレス）
+
+### 1.2.13
 
 - **NeoPixelmin に `getPixels()` を追加** — 画素バッファへの参照を返す。回転や減光は本来バイト列の操作なのに、`getPixelColor()` で 32bit に組み立てて `setPixelColor()` で分解し直すと、その往復だけで数百バイトの Flash を使う。バッファに直接触れればそれを省ける
 - **効果** — 実際の用途で `SHIFT` が 372 → 116 バイト、`DIM` が 300 → 124 バイト。16KB 上限を 92 バイト超過して入らなかったファームが収まった
