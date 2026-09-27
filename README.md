@@ -76,7 +76,13 @@ PWMmin ライブラリと組み合わせて使います。
 
 ## バージョン履歴
 
-### 1.2.14（最新）
+### 1.2.15（最新）
+
+- **ピン 11（PD1）が `pinMode()` だけで GPIO として使えるようになった** — PD1 は SWIO と共用で、これまでは `pinDisconnectDebug(11)` を先に呼ばないと `digitalWrite(11, HIGH)` でも 0V のままだった。書き込みはブートローダー経由なので影響しない。Flash の増加は、ピン番号が定数なら 0 バイト、変数で渡すと 20〜24 バイト
+- **`HIDuiap` は Terminal HID のときだけ使えるようにした** — 他のモードでは、リンクエラー（`undefined reference to 'uiapusb_write'`）ではなく、原因が分かるコンパイルエラーで止まる
+- **README に Terminal HID の受信方法を追記** — `hidapitester --read-input-forever` では受信できない理由と、代わりに WebHID Only を使う手順
+
+### 1.2.14
 
 - **書き込み方法に「UIAPduino (USB)」を追加** — `Tools > Upload method` で選ぶ。基板のブートローダ（rv003usb）に USB の HID だけで書き込む専用ツール `uiapflash` を同梱した。**既定はこれまでどおり minichlink** で、UIAPduino (USB) は 2 番目
 - **macOS から書き込めるようになった** — 同梱の minichlink は Windows / Linux / macOS の 3 ホストすべてが同じアーカイブを指しており、その中身に Mach-O が無い。そのため macOS では `exec format error` で起動すらせず、**ビルドは通るのに書き込めない**状態だった
