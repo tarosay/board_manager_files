@@ -76,7 +76,12 @@ PWMmin ライブラリと組み合わせて使います。
 
 ## バージョン履歴
 
-### 1.2.15（最新）
+### 1.2.16（最新）
+
+- **WebHID Only の構成記述子の長さ（`wTotalLength`）を直した** — 41 バイトと宣言していたが、中身は 34 バイトだった。このため macOS の Chrome で WebHID の機器として出てこなかった（直したファームは Windows 11 / macOS の Chrome で認識することを実機で確認）。WebHID Only は `Tools > USB` の既定なので、それで作ったファームはこのバージョンでビルドし直すこと
+- **`Tools > Upload method` の既定を「UIAPduino (USB)」にした** — Windows / macOS / Linux 共通。これまでの既定 minichlink は macOS では動かなかった。minichlink も引き続き選べる
+
+### 1.2.15
 
 - **ピン 11（PD1）が `pinMode()` だけで GPIO として使えるようになった** — PD1 は SWIO と共用で、これまでは `pinDisconnectDebug(11)` を先に呼ばないと `digitalWrite(11, HIGH)` でも 0V のままだった。書き込みはブートローダー経由なので影響しない。Flash の増加は、ピン番号が定数なら 0 バイト、変数で渡すと 20〜24 バイト
 - **`HIDuiap` は Terminal HID のときだけ使えるようにした** — 他のモードでは、リンクエラー（`undefined reference to 'uiapusb_write'`）ではなく、原因が分かるコンパイルエラーで止まる
