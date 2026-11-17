@@ -76,7 +76,15 @@ PWMmin ライブラリと組み合わせて使います。
 
 ## バージョン履歴
 
-### 1.2.17（最新）
+### 1.2.18（最新）
+
+- **本家 openwch/arduino_core_ch32（v1.0.7 まで）の修正のうち、CH32V003 に効く 7 件を取り込んだ**
+- **`random()` / `randomSeed()` が使えるようになった** — これまではリンクの段階でエラーになっていた。乱数はコアの中で xorshift32 で作る
+- **`analogRead(PADC_VREF)` で内部基準電圧（1.2V）を読めるようになった** — 読んだ値から電源電圧を計算できる。これまでは PA1（ピン 0）の電圧を読んでいた
+- `analogReadResolution()` の換算、`Serial` のパリティ付き（`SERIAL_8E1` など）、SPI の `begin()` 前の設定、`pinMode(pin, OUTPUT_AF_PP / OUTPUT_AF_OD)`、スケッチから見えていた `DEBUG` マクロを直した
+- これらを使わないスケッチの `.bin` は変わらない
+
+### 1.2.17
 
 - **スケッチ例 `Wiremin_VL53L0X` を追加** — VL53L0X（TOF センサ）の距離を、uiap-hid-web の HID Graph に表示する。`Tools > USB` は WebHID Only。実機で確認済み
 - **Wire / Wiremin のスケッチ例 11 本の `Hid` クラスを、uiap-hid-web の最新版にそろえた** — `Println()` の改行は `0x0A` を本文に入れて送るようになり、`Write()` / `Ready()` / `Send()` / `WaitAvailable()` が使えるようになった
