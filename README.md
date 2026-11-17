@@ -76,7 +76,13 @@ PWMmin ライブラリと組み合わせて使います。
 
 ## バージョン履歴
 
-### 1.2.16（最新）
+### 1.2.17（最新）
+
+- **スケッチ例 `Wiremin_VL53L0X` を追加** — VL53L0X（TOF センサ）の距離を、uiap-hid-web の HID Graph に表示する。`Tools > USB` は WebHID Only。実機で確認済み
+- **Wire / Wiremin のスケッチ例 11 本の `Hid` クラスを、uiap-hid-web の最新版にそろえた** — `Println()` の改行は `0x0A` を本文に入れて送るようになり、`Write()` / `Ready()` / `Send()` / `WaitAvailable()` が使えるようになった
+- コア本体と各ライブラリ本体は変わっていない。変わったのはスケッチ例だけ
+
+### 1.2.16
 
 - **WebHID Only の構成記述子の長さ（`wTotalLength`）を直した** — 41 バイトと宣言していたが、中身は 34 バイトだった。このため macOS の Chrome で WebHID の機器として出てこなかった（直したファームは Windows 11 / macOS の Chrome で認識することを実機で確認）。WebHID Only は `Tools > USB` の既定なので、それで作ったファームはこのバージョンでビルドし直すこと
 - **`Tools > Upload method` の既定を「UIAPduino (USB)」にした** — Windows / macOS / Linux 共通。これまでの既定 minichlink は macOS では動かなかった。minichlink も引き続き選べる
